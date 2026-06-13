@@ -54,3 +54,17 @@ F02_LACERAT/IN/    → F04_NAILS/IN/      voice_XXX.mp3  (audio direct)
 F04_NAILS/OUT/     → F05_NUCERIA/IN/    nails_out_XXX.mp4
 F05_NUCERIA/OUT/   → ./outputs/         youtube_short/longform_XXX.mp4
 ```
+
+---
+
+## STATUT BUILD DES TRANSFERTS
+
+| Transfert | Script responsable | Statut |
+|-----------|-------------------|--------|
+| F03→F04 (cruor_render) | `finish.sh` (F04) — `--video` arg | DONE — 2026-06-13 |
+| F02→F04 (voice direct) | `finish.sh` (F04) — `--audio` arg | DONE — 2026-06-13 |
+| F04→F05 (nails_out) | `nuceria.py` (F05) — `--input` arg | DONE — 2026-06-13 |
+| F05→outputs | `nuceria.py` (F05) — `--output` arg | DONE — 2026-06-13 |
+| F02→F03 (prompt+timestamps) | `render.sh` (F03) — EN COURS | EN COURS |
+| F01→F02 (script) | `lacerat.py` (F02) — EN COURS | EN COURS |
+| CONCEPT→F01 (script gen) | `sanguis.py` (F01) — EN COURS | EN COURS |
