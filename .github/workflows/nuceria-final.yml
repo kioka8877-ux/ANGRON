@@ -1,0 +1,42 @@
+name: ANGRON - F05_NUCERIA Final
+
+on:
+  workflow_dispatch:
+
+jobs:
+  nuceria:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install FFmpeg et ffprobe
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg
+
+      - name: Run nuceria.py
+        run: |
+          mkdir -p F05_NUCERIA/OUT
+          python3 F05_NUCERIA/CODEBASE/nuceria.py \
+            --input   F04_NAILS/OUT/nails_out_001.mp4 \
+            --concept "Boxe le mythe des geants" \
+            --format  short \
+            --output  F05_NUCERIA/OUT/youtube_short_001.mp4
+          ls -lh F05_NUCERIA/OUT/
+
+      - name: Mettre a jour ledger STATE_9
+        run: |
+          python3 -c "import json,datetime; f=open('.angron/ledger.json'); l=json.load(f); f.close(); l['projet_actif']['etape']='STATE_9'; l['projet_actif']['fichiers']['final']='F05_NUCERIA/OUT/youtube_short_001.mp4'; l['projet_actif']['derniere_mise_a_jour']=datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'); f=open('.angron/ledger.json','w'); json.dump(l,f,indent=2,ensure_ascii=False); f.close(); print('Ledger STATE_9 OK')"
+
+      - name: Commit final
+        run: |
+          git config user.name "ANGRON-NUCERIA"
+          git config user.email "nuceria@angron.bot"
+          git add F05_NUCERIA/OUT/youtube_short_001.mp4 F05_NUCERIA/OUT/rapport_f05.html F05_NUCERIA/OUT/NUCERIA_DONE.txt .angron/ledger.json
+          git diff --cached --quiet || git commit -m "ANGRON 001 - STATE_9 : youtube_short_001.mp4 camouflage OK"
+          git push
