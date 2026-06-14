@@ -33,6 +33,7 @@ jobs:
             cm-super \
             texlive-lang-french \
             dvipng \
+            dvisvgm \
             fonts-cmu
 
       - name: Cache pip
@@ -91,4 +92,5 @@ jobs:
           git add F03_CRUOR/OUT/cruor_render_001.mp4 .angron/ledger.json
           git diff --cached --quiet || git commit -m "ANGRON 001 - STATE_6_GATE : render brut CRUOR produit"
           git push
+
 
