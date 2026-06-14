@@ -2,9 +2,6 @@ name: ANGRON - F03_CRUOR Render
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'F03_CRUOR/CODEBASE/scene_001.py'
 
 jobs:
   render:
@@ -21,7 +18,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /var/cache/apt/archives
-          key: apt-manim-${{ runner.os }}-v1
+          key: apt-manim-${{ runner.os }}-v2
 
       - name: Install system dependencies
         run: |
@@ -42,7 +39,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: pip-manim-${{ runner.os }}-v1
+          key: pip-manim-${{ runner.os }}-v2
 
       - name: Install Manim
         run: pip install manim==0.18.1
@@ -50,10 +47,13 @@ jobs:
       - name: Start Xvfb
         run: |
           Xvfb :99 -screen 0 1920x1080x24 &
-          echo "DISPLAY=:99" >> $GITHUB_ENV
           sleep 2
+        env:
+          DISPLAY: :99
 
       - name: Render scene_001
+        env:
+          DISPLAY: :99
         run: |
           mkdir -p F03_CRUOR/OUT
           manim render \
@@ -66,21 +66,23 @@ jobs:
           MP4=$(find /tmp/media_cruor -name "*.mp4" | head -1)
           echo "MP4 trouve : $MP4"
           cp "$MP4" F03_CRUOR/OUT/cruor_render_001.mp4
-          echo "Taille : $(du -sh F03_CRUOR/OUT/cruor_render_001.mp4)"
+          ls -lh F03_CRUOR/OUT/
 
       - name: Mettre a jour ledger STATE_6_GATE
-        run: |
-          python3 - <<'EOF'
-import json, datetime
-with open(".angron/ledger.json") as f:
-    ledger = json.load(f)
-ledger["projet_actif"]["etape"] = "STATE_6_GATE"
-ledger["projet_actif"]["fichiers"]["render_brut"] = "F03_CRUOR/OUT/cruor_render_001.mp4"
-ledger["projet_actif"]["derniere_mise_a_jour"] = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-with open(".angron/ledger.json", "w") as f:
-    json.dump(ledger, f, indent=2, ensure_ascii=False)
-print("Ledger STATE_6_GATE OK")
-EOF
+        run: >-
+          python3 -c "
+          import json, datetime;
+          f=open('.angron/ledger.json');
+          ledger=json.load(f);
+          f.close();
+          ledger['projet_actif']['etape']='STATE_6_GATE';
+          ledger['projet_actif']['fichiers']['render_brut']='F03_CRUOR/OUT/cruor_render_001.mp4';
+          ledger['projet_actif']['derniere_mise_a_jour']=datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ');
+          f=open('.angron/ledger.json','w');
+          json.dump(ledger,f,indent=2,ensure_ascii=False);
+          f.close();
+          print('Ledger STATE_6_GATE OK')
+          "
 
       - name: Commit render et ledger
         run: |
@@ -89,4 +91,3 @@ EOF
           git add F03_CRUOR/OUT/cruor_render_001.mp4 .angron/ledger.json
           git diff --cached --quiet || git commit -m "ANGRON 001 - STATE_6_GATE : render brut CRUOR produit"
           git push
-
