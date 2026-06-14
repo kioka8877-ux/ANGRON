@@ -1,0 +1,11 @@
+WHISPER_DONE
+engine=faster-whisper
+model=small
+language_input=auto
+language_detected=fr
+audio=F02_LACERAT/IN/Generated-Audio-June-14_-2026-8_19AM.mp3
+output=F02_LACERAT/OUT/whisper_timestamps_001.json
+nb_blocs=17
+duree_totale=49.18s
+aligned=False
+timestamp=2026-06-14T18:47:49.105023

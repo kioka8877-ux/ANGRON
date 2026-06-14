@@ -1,124 +1,117 @@
 {
-  "version": "1.0-SYNTHETIC",
-  "note": "Timestamps synthétiques — Whisper non disponible dans cet environnement. Proportionnel au nombre de mots.",
+  "version": "2.0",
+  "engine": "faster-whisper",
+  "model": "small",
+  "language": "fr",
+  "language_input": "auto",
   "audio": "F02_LACERAT/IN/Generated-Audio-June-14_-2026-8_19AM.mp3",
   "script": "F01_SANGUIS/OUT/script_001.md",
   "format": "short",
-  "duree_totale": 49.37,
-  "nb_blocs": 14,
-  "aligned": true,
+  "duree_totale": 49.18,
+  "nb_blocs": 17,
+  "aligned": false,
   "blocs": [
     {
       "id": 1,
-      "texte": "Pourquoi les géants se font éteindre par plus petit qu'eux ?",
-      "whisper": "Pourquoi les géants se font éteindre par plus petit qu'eux ?",
-      "anim": "[ANIM: comparaison_côte_à_côte]",
+      "texte": "Pourquoi les géants se font éteindre par plus petits qu'eux ?",
       "start": 0.0,
-      "end": 4.359
+      "end": 4.12
     },
     {
       "id": 2,
       "texte": "On croit que des longs bras frappent plus fort.",
-      "whisper": "On croit que des longs bras frappent plus fort.",
-      "anim": "[ANIM: question_apparaît_suspense]",
-      "start": 4.659,
-      "end": 8.225
+      "start": 4.12,
+      "end": 6.48
     },
     {
       "id": 3,
       "texte": "La physique dit l'inverse.",
-      "whisper": "La physique dit l'inverse.",
-      "anim": "[ANIM: réponse_révélée_dessous]",
-      "start": 8.525,
-      "end": 10.11
+      "start": 7.2,
+      "end": 8.82
     },
     {
       "id": 4,
-      "texte": "Avoir une immense allonge est un piège biomécanique.",
-      "whisper": "Avoir une immense allonge est un piège biomécanique.",
-      "anim": "[ANIM: titre_frappe_écran]",
-      "start": 10.41,
-      "end": 13.58
+      "texte": "Avoir une immense allonge est un piège biomechanique.",
+      "start": 10.03,
+      "end": 13.39
     },
     {
       "id": 5,
       "texte": "Plus ton bras est long, plus il est dur à lancer.",
-      "whisper": "Plus ton bras est long, plus il est dur à lancer.",
-      "anim": "[ANIM: surbrillance_mot_clé]",
-      "start": 13.88,
-      "end": 18.239
+      "start": 13.89,
+      "end": 16.75
     },
     {
       "id": 6,
       "texte": "C'est le moment d'inertie.",
-      "whisper": "C'est le moment d'inertie.",
-      "anim": "[ANIM: humanoïde_rotation_moment_inertie]",
-      "start": 18.539,
-      "end": 20.124
+      "start": 17.71,
+      "end": 19.51
     },
     {
       "id": 7,
       "texte": "Un bras court agit comme un levier compact.",
-      "whisper": "Un bras court agit comme un levier compact.",
-      "anim": "[ANIM: squelette_articulé_mouvement]",
-      "start": 20.424,
-      "end": 23.594
+      "start": 20.2,
+      "end": 22.2
     },
     {
       "id": 8,
       "texte": "Il accélère beaucoup plus vite vers sa cible.",
-      "whisper": "Il accélère beaucoup plus vite vers sa cible.",
-      "anim": "[ANIM: vecteur_force_apparaît_sur_corps]",
-      "start": 23.894,
-      "end": 27.064
+      "start": 22.68,
+      "end": 24.72
     },
     {
       "id": 9,
-      "texte": "Regarde l'énergie cinétique : E = ½mv².",
-      "whisper": "Regarde l'énergie cinétique : E = ½mv².",
-      "anim": "[ANIM: équation_apparaît_progressive]",
-      "start": 27.364,
-      "end": 30.138
+      "texte": "Regarde l'énergie cinétique.",
+      "start": 25.34,
+      "end": 26.56
     },
     {
       "id": 10,
-      "texte": "La vitesse est au carré. Elle compte double dans le KO.",
-      "whisper": "La vitesse est au carré. Elle compte double dans le KO.",
-      "anim": "[ANIM: surbrillance_mot_clé]",
-      "start": 30.438,
-      "end": 34.797
+      "texte": "E égale un demi MV carré.",
+      "start": 26.56,
+      "end": 29.12
     },
     {
       "id": 11,
-      "texte": "Le détail qui tue ?",
-      "whisper": "Le détail qui tue ?",
-      "anim": "[ANIM: question_apparaît_suspense]",
-      "start": 35.097,
-      "end": 37.078
+      "texte": "La vitesse est au carré.",
+      "start": 29.74,
+      "end": 31.48
     },
     {
       "id": 12,
-      "texte": "Un centre de gravité bas permet un transfert de poids instantané.",
-      "whisper": "Un centre de gravité bas permet un transfert de poids instantané.",
-      "anim": "[ANIM: humanoïde_court_centre_gravité_bas]",
-      "start": 37.378,
-      "end": 41.737
+      "texte": "Elle compte double dans le chaos.",
+      "start": 31.94,
+      "end": 33.38
     },
     {
       "id": 13,
-      "texte": "Résultat : la même force de destruction. L'agilité en plus.",
-      "whisper": "Résultat : la même force de destruction. L'agilité en plus.",
-      "anim": "[ANIM: graphe_barres_croissance]",
-      "start": 42.037,
-      "end": 45.999
+      "texte": "Le détail qui tue ?",
+      "start": 34.4,
+      "end": 35.98
     },
     {
       "id": 14,
+      "texte": "Un centre de gravité bas permet un transfert de poids instantané.",
+      "start": 36.44,
+      "end": 40.46
+    },
+    {
+      "id": 15,
+      "texte": "Résultat, la même force de destruction.",
+      "start": 40.98,
+      "end": 43.52
+    },
+    {
+      "id": 16,
+      "texte": "L'agilité en plus.",
+      "start": 44.2,
+      "end": 45.7
+    },
+    {
+      "id": 17,
       "texte": "Quel autre mythe sportif on pulvérise ?",
-      "whisper": "Quel autre mythe sportif on pulvérise ?",
-      "anim": "[ANIM: transition_dissolve_suivant]",
-      "start": 46.299,
-      "end": 49.073
+      "start": 46.8,
+      "end": 49.18
     }
   ]
 }

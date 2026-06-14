@@ -11,7 +11,7 @@
     "fichiers": {
       "script": null,
       "audio": null,
-      "timestamps": null,
+      "timestamps": "F02_LACERAT/OUT/whisper_timestamps_001.json",
       "prompt_manim": null,
       "assets": [],
       "scene_py": null,
@@ -20,7 +20,7 @@
       "final": null
     },
     "debut": null,
-    "derniere_mise_a_jour": null
+    "derniere_mise_a_jour": "2026-06-14T18:47:49Z"
   },
   "historique": [
     {
