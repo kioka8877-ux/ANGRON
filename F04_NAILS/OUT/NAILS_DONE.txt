@@ -1,0 +1,4 @@
+NAILS_DONE
+format=short
+output=F04_NAILS/OUT/nails_out_001.mp4
+timestamp=2026-06-14T10:54:08Z

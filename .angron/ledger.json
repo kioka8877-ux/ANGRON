@@ -7,7 +7,7 @@
     "id": "001",
     "concept": "Boxe : le mythe des géants — un boxeur court a la même puissance de frappe et plus d agilité qu un boxeur grand",
     "format": "short",
-    "etape": "STATE_7",
+    "etape": "STATE_7_DONE",
     "fichiers": {
       "script": "F01_SANGUIS/OUT/script_001.md",
       "audio": "F02_LACERAT/IN/Generated-Audio-June-14_-2026-8_19AM.mp3",
@@ -16,11 +16,11 @@
       "assets": [],
       "scene_py": "F03_CRUOR/CODEBASE/scene_001.py",
       "render_brut": "F03_CRUOR/OUT/cruor_render_001.mp4",
-      "nails_out": null,
+      "nails_out": "F04_NAILS/OUT/nails_out_001.mp4",
       "final": null
     },
     "debut": "2026-06-14",
-    "derniere_mise_a_jour": "2026-06-14T10:53:08Z"
+    "derniere_mise_a_jour": "2026-06-14T10:54:08Z"
   },
   "historique": [],
   "stats": {
