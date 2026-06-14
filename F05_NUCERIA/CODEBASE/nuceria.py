@@ -51,6 +51,7 @@ def encode(input_path: Path, output_path: Path, concept: str) -> tuple[bool, str
 
     cmd = [
         "ffmpeg", "-y",
+        "-fflags", "+bitexact",
         "-i", str(input_path),
         # Vidéo
         "-c:v", STYLE["codec"],
