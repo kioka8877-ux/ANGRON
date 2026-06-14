@@ -1,0 +1,89 @@
+name: ANGRON - F02_LACERAT Whisper Sync
+
+on:
+  workflow_dispatch:
+    inputs:
+      audio:
+        description: "Chemin fichier audio (ex: F02_LACERAT/IN/voice_001.mp3)"
+        required: true
+        default: "F02_LACERAT/IN/voice_001.mp3"
+      script:
+        description: "Chemin script narration (ex: F01_SANGUIS/OUT/script_001.md)"
+        required: true
+        default: "F01_SANGUIS/OUT/script_001.md"
+      output:
+        description: "Chemin timestamps JSON de sortie"
+        required: true
+        default: "F02_LACERAT/OUT/whisper_timestamps_001.json"
+      model:
+        description: "Modele Whisper"
+        required: false
+        default: "small"
+        type: choice
+        options: [tiny, base, small, medium, large-v3]
+      debug:
+        description: "Mode debug verbose"
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  whisper:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-faster-whisper-${{ runner.os }}-v1
+
+      - name: Cache modele Whisper
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface/hub
+          key: whisper-model-${{ inputs.model }}-v1
+
+      - name: Install faster-whisper
+        run: |
+          pip install faster-whisper>=1.0.0
+
+      - name: Install ffmpeg
+        run: sudo apt-get install -y --no-install-recommends ffmpeg
+
+      - name: Transcription Whisper
+        run: |
+          mkdir -p F02_LACERAT/OUT
+          DEBUG_FLAG=""
+          if [ "${{ inputs.debug }}" = "true" ]; then
+            DEBUG_FLAG="--debug"
+          fi
+          python3 F02_LACERAT/CODEBASE/whisper_sync.py             --audio  "${{ inputs.audio }}"             --script "${{ inputs.script }}"             --output "${{ inputs.output }}"             --model  "${{ inputs.model }}"             $DEBUG_FLAG
+
+      - name: Mettre a jour ledger timestamps
+        run: |
+          python3 -c "
+import json, datetime
+with open('.angron/ledger.json') as f:
+    l = json.load(f)
+if l['projet_actif']['fichiers'] is not None:
+    l['projet_actif']['fichiers']['timestamps'] = '${{ inputs.output }}'
+    l['projet_actif']['derniere_mise_a_jour'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+with open('.angron/ledger.json', 'w') as f:
+    json.dump(l, f, indent=2, ensure_ascii=False)
+print('Ledger timestamps OK')
+"
+
+      - name: Commit timestamps et ledger
+        run: |
+          git config user.name "ANGRON-LACERAT"
+          git config user.email "lacerat@angron.bot"
+          git add F02_LACERAT/OUT/ .angron/ledger.json
+          git diff --cached --quiet || git commit -m "ANGRON - F02_LACERAT : whisper timestamps produits (${{ inputs.model }})"
+          git push
