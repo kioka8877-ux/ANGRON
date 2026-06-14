@@ -18,7 +18,7 @@ from pathlib import Path
 
 FINGERPRINTS_INTERDITS = [
     "manim", "remotion", "opencv", "python", "openai",
-    "runway", "stable-diffusion", "lavf", "lavc",
+    "runway", "stable-diffusion",
     "moviepy", "ffmpeg-python", "angron", "claude",
 ]
 
