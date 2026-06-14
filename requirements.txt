@@ -1,11 +1,11 @@
-# ANGRON — Dépendances Python
+# ANGRON — Dependances Python
 
 # Manim
 manim>=0.18.0
 manim-voiceover>=0.3.0
 
-# Whisper (transcription + timestamps)
-openai-whisper>=20231117
+# Whisper (transcription + timestamps) — faster-whisper : pas de torch, CTranslate2
+faster-whisper>=1.0.0
 
 # Audio processing
 pydub>=0.25.1
